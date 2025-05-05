@@ -1,0 +1,135 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.container {
+    display: flex;
+    gap: 30px; /* Space between panels */
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.machine-panel, .control-panel {
+    flex: 1; /* Each panel takes up equal space */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive grid */
+    gap: 15px;
+}
+
+.product-item {
+    border: 1px solid #eee;
+    padding: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+.product-item button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+.product-item button:hover {
+    background-color: #4cae4c;
+}
+
+.balance-display {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #3a87ad;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #d9edf7;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.coin-buttons button,
+.refund-section button,
+.admin-section button {
+    margin: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+}
+.coin-buttons button:hover,
+.refund-section button:hover,
+.admin-section button:hover {
+    background-color: #e7e7e7;
+}
+
+#resetButton {
+    background-color: #d9534f;
+    color: white;
+    border-color: #d43f3a;
+}
+#resetButton:hover {
+    background-color: #c9302c;
+}
+
+
+.refund-section {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.refund-section input[type="number"] {
+    padding: 8px;
+    margin-right: 5px;
+    max-width: 100px; /* Limit width of input */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.status-message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.status-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+}
+
+.status-error {
+    background-color: #f2dede;
+    color: #a94442;
+    border: 1px solid #ebccd1;
+}
+
+.admin-section {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px dashed #ccc;
+    text-align: center;
+}

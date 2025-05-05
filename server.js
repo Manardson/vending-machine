@@ -28,6 +28,7 @@ function resetVendingMachine() {
 }
 
 app.use(express.json());
+app.use(express.static('public'));
 
 app.get('/products', (req, res) => {
     const availableProducts = products
