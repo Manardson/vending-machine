@@ -59,6 +59,32 @@ app.post('/insert-coin', (req, res) => {
     });
 });
 
+// Cancel request and get refund
+app.post('/return-coins/:amount', (req, res) => {
+    const amountToReturn = req.params.amount
+
+    if (currentBalance > 0) {
+        currentBalance = currentBalance - amountToReturn;
+    } else {
+        currentBalance = 0;
+    }
+
+    res.status(200).json({
+        message: 'Request cancelled. Coins returned.',
+        returnedAmount: amountToReturn.toFixed(2)
+    });
+});
+
+app.post('/purchase/:productId', (req, res) => {
+    // We will implement this next
+    const productId = req.params.productId;
+    res.send(`Purchase logic for product ID ${productId} will be here.`);
+});
+
 app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`);
+    console.log(`Vending Machine API listening at http://localhost:${port}`);
+    console.log(`Accepted coins: ${ACCEPTED_COINS.join(', ')}`);
+    // New products list on start
+    console.log('Available Products:', products.map(p => ({id: p.id, name: p.name, price: p.price.toFixed(2), quantity: p.quantity })));
+    console.log(`Initial Balance: ${currentBalance.toFixed(2)}`);
 });
