@@ -47,7 +47,8 @@ async function fetchProducts() {
             const productDiv = document.createElement('div');
             productDiv.className = 'product-item';
             productDiv.innerHTML = `
-                <strong>${product.name}</strong>
+                <strong>${product.name}</strong><br/>
+                <strong>${product.qty}</strong> Available
                 <p>Price: ${formatCurrency(product.price)}</p>
                 <button onclick="purchaseProduct('${product.id}')">Buy</button>
             `;
@@ -188,7 +189,7 @@ async function requestFullRefund() {
 }
 
 async function resetMachine() {
-    if (!confirm('Are you sure you want to reset the vending machine? This is for suppliers only.')) {
+    if (!confirm('Are you sure you want to reset the vending machine?')) {
         return;
     }
 

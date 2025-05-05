@@ -33,7 +33,7 @@ app.use(express.static('public'));
 app.get('/products', (req, res) => {
     const availableProducts = products
         .filter(p => p.quantity > 0)
-        .map(p => ({ id: p.id, name: p.name, price: p.price.toFixed(2) }));
+        .map(p => ({ id: p.id, name: p.name, price: p.price.toFixed(2), qty: p.quantity }));
 
     res.status(200).json(availableProducts);
 });
@@ -76,14 +76,15 @@ app.post('/return-coins/:amount', (req, res) => {
 
     if (amountToReturn <= currentBalance) {
         if (currentBalance > 0) {
-            currentBalance = currentBalance - amountToReturn;
+            currentBalance = parseFloat((currentBalance - amountToReturn).toFixed(2));
         } else {
             currentBalance = 0;
         }
 
         res.status(200).json({
             message: 'Request cancelled. Coins returned.',
-            returnedAmount: amountToReturn.toFixed(2)
+            returnedAmount: amountToReturn.toFixed(2),
+            remainingBalance: currentBalance
         });
     } else {
         res.status(400).json({
