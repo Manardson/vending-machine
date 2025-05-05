@@ -136,6 +136,11 @@ app.post('/purchase/:productId', (req, res) => {
     console.log(`Change given: ${change.toFixed(2)}`);
 });
 
+app.post('/admin/reset', (req, res) => {
+    resetVendingMachine();
+    res.status(200).json({ message: 'Vending machine has been reset to initial state.' });
+});
+
 app.listen(port, () => {
     console.log(`Vending Machine API listening at http://localhost:${port}`);
     console.log(`Accepted coins: ${ACCEPTED_COINS.join(', ')}`);
