@@ -27,6 +27,38 @@ app.get('/products', (req, res) => {
     res.status(200).json(availableProducts);
 });
 
+app.get('/balance', (req, res) => {
+    res.status(200).json({
+        currentBalance: currentBalance.toFixed(2)
+    });
+});
+
+app.post('/insert-coin', (req, res) => {
+    const { coin } = req.body;
+
+    // --- Input Validation ---
+    if (coin === undefined || coin === null) {
+        return res.status(400).json({ error: 'Coin value missing in request body.' });
+    }
+    const coinValue = parseFloat(coin);
+    if (isNaN(coinValue)) {
+        return res.status(400).json({ error: 'Invalid coin value provided. Must be a number.' });
+    }
+    if (!ACCEPTED_COINS.includes(coinValue)) {
+        return res.status(400).json({
+            error: `Invalid coin denomination. Accepted coins are: ${ACCEPTED_COINS.join(', ')}`,
+            returnedCoin: coinValue
+        });
+    }
+
+    currentBalance = parseFloat((currentBalance + coinValue).toFixed(2));
+
+    res.status(200).json({
+        message: `Coin ${coinValue.toFixed(2)} accepted.`,
+        currentBalance: currentBalance.toFixed(2)
+    });
+});
+
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
 });
