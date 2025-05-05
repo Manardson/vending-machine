@@ -33,7 +33,7 @@ function handleInsertCoin(req, res) {
 
         const newBalance = VendingService.insertCoin(coin);
         res.status(200).json({
-            message: `Coin accepted.`,
+            message: `Cash accepted.`,
             currentBalance: newBalance.toFixed(2)
         });
 
