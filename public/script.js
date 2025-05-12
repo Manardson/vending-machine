@@ -1,4 +1,4 @@
-const API_BASE_URL = ''; // Keep empty for same-origin requests
+const API_BASE_URL = ''; // localhost
 
 const productListDiv = document.getElementById('productList');
 const currentBalanceDiv = document.getElementById('currentBalance');
@@ -7,7 +7,6 @@ const refundAmountInput = document.getElementById('refundAmountInput');
 
 // --- Helpers ---
 
-// Update the status message display
 function updateStatus(message, isError = false) {
     statusMessageDiv.textContent = message;
     statusMessageDiv.className = 'status-message';
@@ -27,7 +26,7 @@ function formatCurrency(amount) {
     return `$${numericAmount.toFixed(2)}`;
 }
 
-// --- API Interaction ---
+// --- API ---
 
 async function fetchProducts() {
     try {
@@ -37,7 +36,7 @@ async function fetchProducts() {
         }
         const products = await response.json();
 
-        productListDiv.innerHTML = ''; // Clear previous list
+        productListDiv.innerHTML = '';
         if (products.length === 0) {
             productListDiv.innerHTML = '<p>No products available.</p>';
             return;

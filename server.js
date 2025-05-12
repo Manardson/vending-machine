@@ -8,15 +8,16 @@ const port = 3000;
 // --- Middleware ---
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
 
+// ==Routes==
 
-// --- API Routes --
-
-// GET
 app.get('/products', VendingController.handleGetProducts);
 app.get('/balance', VendingController.handleGetBalance);
 
-// POST
 app.post('/insert-coin', VendingController.handleInsertCoin);
 app.post('/purchase/:productId', VendingController.handlePurchaseProduct);
 app.post('/return-coins/:amount', VendingController.handleRefundAmount);

@@ -1,7 +1,5 @@
 const VendingService = require('./vendingService');
 
-// --- Controller Functions ---
-
 function handleGetProducts(req, res) {
     try {
         const products = VendingService.getAvailableProducts();
@@ -39,7 +37,6 @@ function handleInsertCoin(req, res) {
 
     } catch (error) {
         console.error("Controller Error [InsertCoin]:", error.message);
-        // Handle specific errors thrown by the service
         if (error.code === 'INVALID_COIN') {
             res.status(400).json({
                 error: error.message,
@@ -49,7 +46,6 @@ function handleInsertCoin(req, res) {
         } else if (error.message.includes('Invalid coin value')) {
             res.status(400).json({ error: error.message });
         } else {
-            // Generic error for unexpected issues
             res.status(500).json({ error: 'Internal server error processing coin.' });
         }
     }
@@ -72,7 +68,6 @@ function handlePurchaseProduct(req, res) {
 
     } catch (error) {
         console.error("Controller Error [PurchaseProduct]:", error.message);
-        // Handle specific service errors
         if (error.code === 'PRODUCT_NOT_FOUND') {
             res.status(404).json({ error: error.message });
         } else if (error.code === 'OUT_OF_STOCK') {

@@ -1,6 +1,6 @@
 const { ACCEPTED_COINS, initialProducts } = require('./config');
 
-// --- Mutable Vending Machine State ---
+// --- State ---
 let products = JSON.parse(JSON.stringify(initialProducts));
 let currentBalance = 0.00;
 
@@ -107,6 +107,21 @@ function refundAmount(amountToRefund) {
     }
 
     currentBalance = toFixedNumber(currentBalance - parsedAmount);
+    parsedAmount = parsedAmount % 2
+    // 4.50
+    // 2.15 % 2
+    // 1.075 = 0.05
+    // + 1 5c coin counter_5 += 1
+
+    // counter_10 += 1
+
+    // counter for the coins in the machine first (do I have spare change to start with)
+
+    // run out of cash?
+    // $£?
+    // Contactless <> api > log transactions in db (5-6 tables from processing provider)
+    // Auth
+
     console.log(`Service: Refunded ${parsedAmount.toFixed(2)}. Remaining balance: ${currentBalance.toFixed(2)}`);
 
     return {
